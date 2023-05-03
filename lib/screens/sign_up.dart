@@ -29,6 +29,7 @@ class SignUp extends StatelessWidget {
           foregroundColor: MaterialStateProperty.all<Color>(color),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
+
               borderRadius: BorderRadius.circular(30.0),
               // side: BorderSide(color: Colors.red)
             ),
