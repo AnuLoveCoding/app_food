@@ -27,7 +27,6 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Colors.black,
         leading: IconButton(
             onPressed: (){
-
             },
             icon: Icon(Icons.arrow_back_ios,color: Colors.grey,)),
       ),

@@ -1,4 +1,5 @@
 import 'package:app_food/screens/login_page.dart';
+import 'package:app_food/screens/sign_up.dart';
 import 'package:app_food/screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: SignUp(),
     );
   }
 }
