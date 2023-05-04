@@ -1,24 +1,9 @@
+import 'package:app_food/screens/widget/text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatelessWidget {
 
-  Widget textFeild({required String hinText}){
-    return TextField(
-      decoration: InputDecoration(
-        hintText: hinText,
-        hintStyle: TextStyle(
-          color: Colors.white,
-        ),
-        enabledBorder: UnderlineInputBorder(
-
-          borderSide: BorderSide(
-            color: Colors.grey,
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget button({required String buttonName, required Color color}){
     return Container(
@@ -59,10 +44,11 @@ class SignUp extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      textFeild(hinText: 'Name'),
-                      textFeild(hinText: 'UserName'),
-                      textFeild(hinText: 'Password'),
-                      textFeild(hinText: 'Confirm Password'),
+                      MyTextFeild(hintText: "Name", obscureText: false),
+                      MyTextFeild(hintText: 'UserName', obscureText: false),
+                      MyTextFeild(hintText: 'Password', obscureText: true),
+                      MyTextFeild(hintText: 'Email', obscureText: false),
+                      MyTextFeild(hintText: 'Confirm Password', obscureText: true)
                     ],
                   ),
                 ),
@@ -81,3 +67,4 @@ class SignUp extends StatelessWidget {
     );
   }
 }
+

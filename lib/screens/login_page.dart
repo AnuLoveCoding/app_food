@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  Widget textFeild({required String hintText, required IconData icon}){
+  Widget textFeild({required String hintText, required IconData icon, required bool obscureText}){
     return TextField(
+      obscureText: obscureText,
       decoration: InputDecoration(
          prefixIcon: Icon(icon,color: Colors.white,),
           hintText: hintText,
@@ -44,10 +45,12 @@ class LoginPage extends StatelessWidget {
             child: Column(
                 children: [
                   textFeild(
+                    obscureText: false,
                     hintText: 'UserName',
                     icon: Icons.person_outline,),
                   SizedBox(height: 30.0,),
                   textFeild(
+                    obscureText: true,
                     icon: Icons.password,
                     hintText: 'Password'),
                 ],
