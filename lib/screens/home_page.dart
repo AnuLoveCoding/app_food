@@ -77,18 +77,22 @@ class _HomePageState extends State<HomePage> {
       ),
 
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          TextField(
-            decoration:InputDecoration(
-              hintText: 'Search Food',
-              hintStyle: TextStyle(color: Colors.white),
-              prefixIcon: Icon(Icons.search,color: Colors.white,),
-              filled: true,
-              fillColor: Color(0xff3a3e3e),
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(10.0)
-              )
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: TextField(
+              decoration:InputDecoration(
+                hintText: 'Search Food',
+                hintStyle: TextStyle(color: Colors.white),
+                prefixIcon: Icon(Icons.search,color: Colors.white,),
+                filled: true,
+                fillColor: Color(0xff3a3e3e),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(10.0)
+                )
+              ),
             ),
           ),
           SizedBox(height: 5.0,),
@@ -104,21 +108,26 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          GridView.count(
-            crossAxisCount: 2,
-            childAspectRatio: 0.8,
-            crossAxisSpacing: 20.0,
-            mainAxisSpacing: 20.0,
-            children: [
-              bottomContainer(image: '../images/pizza01.jpg', price: 123, name: 'Famous All'),
-              bottomContainer(image: '../images/pizza02.jpg', price: 540, name: 'Burger All'),
-              bottomContainer(image: '../images/pizza03.jpg', price: 256, name: 'Recipe All'),
-              bottomContainer(image: '../images/pizza04.jpg', price: 369, name: 'Pizza All'),
-            ],
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10.0),
+            height: 510.0,
+            child: GridView.count(
+              shrinkWrap: false,
+              primary: false,
+              crossAxisCount: 2,
+              childAspectRatio: 0.8,
+              crossAxisSpacing: 20.0,
+              mainAxisSpacing: 20.0,
+              children: [
+                bottomContainer(image: '../images/pizza01.jpg', price: 123, name: 'Famous All'),
+                bottomContainer(image: '../images/pizza02.jpg', price: 540, name: 'Burger All'),
+                bottomContainer(image: '../images/pizza03.jpg', price: 256, name: 'Recipe All'),
+                bottomContainer(image: '../images/pizza04.jpg', price: 369, name: 'Pizza All'),
+              ],
+            ),
           )
         ],
       ),
     );
-
   }
 }
