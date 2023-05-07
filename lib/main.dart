@@ -22,8 +22,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Food App',
       theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xff2b2b2b),
+        appBarTheme: AppBarTheme(
+          color: Color(0xff2b2b2b),
+        )
         // This is the theme of your application.
-        //
         // Try running your application with "flutter run". You'll see the
         // application has a blue toolbar. Then, without quitting the app, try
         // changing the primarySwatch below to Colors.green and then invoke
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        // primarySwatch: Colors.blue,
       ),
       home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
               else{
                 LoginPage();
               }
-          },
+        },
       ),
     );
   }
