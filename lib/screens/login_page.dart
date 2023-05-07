@@ -40,6 +40,34 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  void validation(){
+    if(Email.text.trim().isEmpty || Email.text.trim() == null && Password.text.trim().isEmpty || Password.text.trim() == null){
+      ScaffoldMessenger.of(context).
+      showSnackBar(
+        const SnackBar(content: Text('All Feilds is Empty!'),
+        ),
+      );
+      return;
+    }
+    if(Email.text.trim().isEmpty || Email.text.trim() == null){
+      ScaffoldMessenger.of(context).
+         showSnackBar(
+            const SnackBar(content: Text('Email is Empty!'),
+         ),
+      );
+      return;
+    }
+
+    if(Password.text.trim().isEmpty || Password.text.trim() == null){
+      ScaffoldMessenger.of(context).
+      showSnackBar(
+        const SnackBar(content: Text('Password is Empty!'),
+        ),
+      );
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               onPressed: (){
-
+                  validation();
               },
               child: Text('Login',style: TextStyle(color: Colors.white,fontSize: 20.0),),
             ),
