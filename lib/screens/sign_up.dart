@@ -1,4 +1,4 @@
-import 'package:app_food/screens/widget/text_field.dart';
+import 'package:app_food/screens/widget/my_text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -59,7 +59,6 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-
       body: SafeArea(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal:50.0),

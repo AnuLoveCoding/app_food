@@ -1,24 +1,7 @@
+import 'package:app_food/screens/widget/my_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  Widget textFeild({required String hintText, required IconData icon, required bool obscureText}){
-    return TextField(
-      obscureText: obscureText,
-      decoration: InputDecoration(
-         prefixIcon: Icon(icon,color: Colors.white,),
-          hintText: hintText,
-          hintStyle: TextStyle(color: Colors.white),
-          enabledBorder: UnderlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0)),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0)),
-            borderSide: BorderSide(color: Colors.green)
-          ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +27,9 @@ class LoginPage extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 50.0) ,
             child: Column(
                 children: [
-                  textFeild(
-                    obscureText: false,
-                    hintText: 'UserName',
-                    icon: Icons.person_outline,),
+                  MyTextFeild(hintText: 'Email', obscureText: false, controller: null),
                   SizedBox(height: 30.0,),
-                  textFeild(
-                    obscureText: true,
-                    icon: Icons.password,
-                    hintText: 'Password'),
+                  MyTextFeild(hintText: 'Password', obscureText: true, controller: null),
                 ],
             ),
           ),
