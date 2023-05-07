@@ -106,6 +106,9 @@ class _HomePageState extends State<HomePage> {
           ),
           GridView.count(
             crossAxisCount: 2,
+            childAspectRatio: 0.8,
+            crossAxisSpacing: 20.0,
+            mainAxisSpacing: 20.0,
             children: [
               bottomContainer(image: '../images/pizza01.jpg', price: 123, name: 'Famous All'),
               bottomContainer(image: '../images/pizza02.jpg', price: 540, name: 'Burger All'),
