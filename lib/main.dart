@@ -1,5 +1,5 @@
 import 'package:app_food/screens/login_page.dart';
-import 'package:app_food/screens/sign_up.dart';
+import 'package:app_food/screens/sign_up01.dart';
 import 'package:app_food/screens/welcome_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

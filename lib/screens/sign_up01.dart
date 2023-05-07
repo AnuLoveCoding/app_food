@@ -1,6 +1,7 @@
 import 'package:app_food/screens/widget/my_text_field.dart';
 import 'package:flutter/material.dart';
 
+
 class SignUp extends StatefulWidget {
 
   @override
@@ -9,11 +10,48 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
 
+  TextEditingController UserName = TextEditingController();
+  TextEditingController Password = TextEditingController();
+  TextEditingController Email = TextEditingController();
+  TextEditingController Confirm_password = TextEditingController();
+
   GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
 
   void validation(){
-    if(){
+    if(UserName.text.trim().isEmpty || UserName.text.trim() == null){
+       ScaffoldMessenger.of(context).
+            showSnackBar(
+              const SnackBar(content: Text('UserName is empty'),
+            ),
+       );
+       return;
+    }
 
+    if(Password.text.trim().isEmpty || Password.text.trim() == null){
+      ScaffoldMessenger.of(context).
+      showSnackBar(
+        const SnackBar(content: Text('Passwprd is empty'),
+        ),
+      );
+      return;
+    }
+
+    if(Email.text.trim().isEmpty || Email.text.trim() == null){
+      ScaffoldMessenger.of(context).
+      showSnackBar(
+        const SnackBar(content: Text('Email is empty'),
+        ),
+      );
+      return;
+    }
+
+    if(Confirm_password.text.trim().isEmpty || Confirm_password.text.trim() == null){
+      ScaffoldMessenger.of(context).
+      showSnackBar(
+        const SnackBar(content: Text('Confirm_password is empty'),
+        ),
+      );
+      return;
     }
   }
 
@@ -54,23 +92,20 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MyTextFeild(hintText: "Name", obscureText: false),
-                    MyTextFeild(hintText: 'UserName', obscureText: false),
-                    MyTextFeild(hintText: 'Password', obscureText: true),
-                    MyTextFeild(hintText: 'Email', obscureText: false),
-                    MyTextFeild(hintText: 'Confirm Password', obscureText: true)
+                    MyTextFeild(hintText: 'UserName', obscureText: false, controller: UserName,),
+                    MyTextFeild(hintText: 'Password', obscureText: true, controller: Password,),
+                    MyTextFeild(hintText: 'Email', obscureText: false, controller: Email,),
+                    MyTextFeild(hintText: 'Confirm_password', obscureText: true, controller: Confirm_password,)
                   ],
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  button(buttonName: 'Cancel', color: Colors.grey, textcolor: Colors.white, ontap: (){
-
-                  }),
+                  button(buttonName: 'Cancel', color: Colors.grey, textcolor: Colors.white, ontap: (){}),
                   SizedBox(width: 10.0,),
                   button(buttonName: 'Register', color: Colors.red, textcolor: Colors.white, ontap: (){
-
+                    return validation();
                   }),
                 ],
               )

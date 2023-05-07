@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
 
+  TextEditingController Email = TextEditingController();
+  TextEditingController Password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +30,9 @@ class LoginPage extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 50.0) ,
             child: Column(
                 children: [
-                  MyTextFeild(hintText: 'Email', obscureText: false, controller: null),
-                  SizedBox(height: 30.0,),
-                  MyTextFeild(hintText: 'Password', obscureText: true, controller: null),
+                  MyTextFeild(hintText: 'Email', obscureText: false, controller: Email, ),
+                  // SizedBox(height: 30.0,),
+                  MyTextFeild(hintText: 'Password', obscureText: true,controller: Password,),
                 ],
             ),
           ),
