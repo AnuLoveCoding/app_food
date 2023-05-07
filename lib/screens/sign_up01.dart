@@ -14,6 +14,8 @@ class _SignUpState extends State<SignUp> {
 
   late UserCredential userCredential;
 
+  bool loading = false;
+
   TextEditingController UserName = TextEditingController();
   TextEditingController Password = TextEditingController();
   TextEditingController Email = TextEditingController();
@@ -23,7 +25,7 @@ class _SignUpState extends State<SignUp> {
 
   Future sendData() async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+       userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: Email.text,
           password: Password.text,
       );
@@ -54,7 +56,13 @@ class _SignUpState extends State<SignUp> {
          SnackBar(content: Text('$e'),
         ),
       );
+      setState(() {
+        loading = false;
+      });
     }
+    setState(() {
+      loading = false;
+    });
   }
 
   void validation(){
@@ -94,6 +102,9 @@ class _SignUpState extends State<SignUp> {
       return;
     }
     else{
+      setState(() {
+        loading = true;
+      });
       sendData();
     }
   }
@@ -142,7 +153,12 @@ class _SignUpState extends State<SignUp> {
                   ],
                 ),
               ),
-              Row(
+              loading?Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  ],
+              ): Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   button(buttonName: 'Cancel', color: Colors.grey, textcolor: Colors.white, ontap: (){}),

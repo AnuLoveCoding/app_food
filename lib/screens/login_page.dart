@@ -1,14 +1,49 @@
 import 'package:app_food/screens/widget/my_text_field.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+   late UserCredential userCredential;
   TextEditingController Email = TextEditingController();
   TextEditingController Password = TextEditingController();
+
+  GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
+
+  Future loginAuth() async {
+    try {
+       userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: Email.text,
+          password: Password.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).
+        showSnackBar(
+          const SnackBar(content: Text('No user found for that email.'),
+          ),
+        );
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).
+        showSnackBar(
+          const SnackBar(content: Text('Wrong password provided for that user.'),
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: globalKey,
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
