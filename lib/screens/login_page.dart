@@ -10,8 +10,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-   late UserCredential userCredential;
+   bool loading = false;
+  late UserCredential userCredential;
   TextEditingController Email = TextEditingController();
   TextEditingController Password = TextEditingController();
 
@@ -36,8 +36,14 @@ class _LoginPageState extends State<LoginPage> {
           const SnackBar(content: Text('Wrong password provided for that user.'),
           ),
         );
+        setState(() {
+          loading = false;
+        });
       }
     }
+    setState(() {
+      loading = false;
+    });
   }
 
   void validation(){
@@ -65,6 +71,12 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
       return;
+    }
+    else{
+      setState(() {
+        loading = true;
+      });
+      loginAuth();
     }
   }
 
@@ -100,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           SizedBox(height: 20.0,),
-          Container(
+          loading? CircularProgressIndicator() : Container(
             width: 150.0,
             height: 40.0,
             child: ElevatedButton(
