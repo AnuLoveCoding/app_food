@@ -61,12 +61,50 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+  Widget drawerItem({required String name, required IconData icon}){
+    return ListTile(
+      leading: Icon(icon,color: Colors.white,),
+      title: Text(name,style: TextStyle(fontSize: 20.0,color: Colors.white),),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-
-      )
+        child: Container(
+          color: Color(0xff3a3e3e),
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(image: AssetImage('../images/background.jpg'),fit: BoxFit.cover),
+                  ),
+                    currentAccountPicture:CircleAvatar(
+                      backgroundImage: AssetImage('../images/fb.jpg'),
+                    ) ,
+                    accountName: Text('Flutter Baba'),
+                    accountEmail: Text('anusrivas07@gmail.com'),
+                ),
+                drawerItem(name: 'Profile', icon: Icons.person),
+                drawerItem(name: 'Cart', icon: Icons.add_shopping_cart),
+                drawerItem(name: 'Order', icon: Icons.shop),
+                Divider(
+                  color: Colors.white,
+                  thickness: 3.0,
+                ),
+                ListTile(
+                  leading: Text('Communicate',style: TextStyle(color: Colors.white,fontSize: 20.0),),
+                ),
+                drawerItem(name: 'Change', icon: Icons.lock),
+                drawerItem(name: 'Log Out', icon: Icons.exit_to_app),
+              ],
+            ),
+          ),
+        ),
+      ),
       appBar: AppBar(
         elevation: 0.0,
         actions:  [
