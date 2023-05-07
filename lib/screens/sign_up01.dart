@@ -1,4 +1,5 @@
 import 'package:app_food/screens/widget/my_text_field.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,6 +17,15 @@ class _SignUpState extends State<SignUp> {
   TextEditingController Confirm_password = TextEditingController();
 
   GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
+
+  Future sendData() async {
+    await FirebaseFirestore.instance.collection('userData').doc().set({
+      'UserName' : UserName.text,
+      'Password' : Password.text,
+      'Email' : Email.text,
+      'Confirm_password' : Confirm_password.text,
+    });
+  }
 
   void validation(){
     if(UserName.text.trim().isEmpty || UserName.text.trim() == null){
