@@ -64,9 +64,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+
+      )
       appBar: AppBar(
         elevation: 0.0,
-        leading: Icon(Icons.sort),
         actions:  [
           Padding(
             padding: const EdgeInsets.all(9.0),
