@@ -1,5 +1,6 @@
 import 'package:app_food/screens/widget/my_text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -11,6 +12,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
 
+  late UserCredential userCredential;
+
   TextEditingController UserName = TextEditingController();
   TextEditingController Password = TextEditingController();
   TextEditingController Email = TextEditingController();
@@ -19,12 +22,39 @@ class _SignUpState extends State<SignUp> {
   GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
 
   Future sendData() async {
-    await FirebaseFirestore.instance.collection('userData').doc().set({
-      'UserName' : UserName.text,
-      'Password' : Password.text,
-      'Email' : Email.text,
-      'Confirm_password' : Confirm_password.text,
-    });
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: Email.text,
+          password: Password.text,
+      );
+      await FirebaseFirestore.instance.collection('userData').doc(userCredential.user?.uid).set({
+        'UserName': UserName,
+        'Password' : Password,
+        'userid' : userCredential.user?.uid,
+        'Email': Email,
+        'Confirm_password': Confirm_password,
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        ScaffoldMessenger.of(context).
+        showSnackBar(
+          const SnackBar(content: Text('The password provided is too weak.'),
+          ),
+        );
+      } else if (e.code == 'email-already-in-use') {
+        ScaffoldMessenger.of(context).
+        showSnackBar(
+          const SnackBar(content: Text('The account  already exist for that Email.'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).
+      showSnackBar(
+         SnackBar(content: Text('$e'),
+        ),
+      );
+    }
   }
 
   void validation(){
@@ -35,15 +65,6 @@ class _SignUpState extends State<SignUp> {
             ),
        );
        return;
-    }
-
-    if(Password.text.trim().isEmpty || Password.text.trim() == null){
-      ScaffoldMessenger.of(context).
-      showSnackBar(
-        const SnackBar(content: Text('Passwprd is empty'),
-        ),
-      );
-      return;
     }
 
     if(Email.text.trim().isEmpty || Email.text.trim() == null){
@@ -62,6 +83,18 @@ class _SignUpState extends State<SignUp> {
         ),
       );
       return;
+    }
+
+    if(Password.text.trim().isEmpty || Password.text.trim() == null){
+      ScaffoldMessenger.of(context).
+      showSnackBar(
+        const SnackBar(content: Text('Passwprd is empty'),
+        ),
+      );
+      return;
+    }
+    else{
+      sendData();
     }
   }
 
