@@ -19,7 +19,10 @@ class DetailPage extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-
+                child: CircleAvatar(
+                  radius: 120.0,
+                  backgroundImage: AssetImage('../images/pizza01.jpg'),
+                ),
             ),
           ),
           Expanded(
@@ -35,9 +38,10 @@ class DetailPage extends StatelessWidget {
                   ),
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                      Text("Neapolitan",style: TextStyle(fontSize: 40.0,color: Colors.white),),
+                      Text("Neapolitan",style: TextStyle(fontSize: 40.0,color: Colors.white,fontWeight: FontWeight.bold),),
                       Text('Any text...',style: TextStyle(fontSize: 7.0,color: Colors.white),),
                       SizedBox(height: 8.0,),
                     Row(
@@ -88,8 +92,10 @@ class DetailPage extends StatelessWidget {
                             primary: Colors.purple
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.shop,color: Colors.white,),
+                            Icon(Icons.shopping_cart,color: Colors.white,),
+                            SizedBox(width: 10.0,),
                             Text(
                               "Add To Cart",
                               style: TextStyle(color: Colors.white, fontSize: 18),
