@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:app_food/provider/my_provider.dart';
+import 'package:app_food/screens/detail_page.dart';
 import 'package:app_food/screens/home_page.dart';
 import 'package:app_food/screens/login_page.dart';
 import 'package:app_food/screens/sign_up01.dart';
@@ -44,15 +45,16 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           // primarySwatch: Colors.blue,
         ),
-        home: StreamBuilder(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder:(index,snapshot){
-                if(snapshot.hasData){
-                  return HomePage();
-                }
-                return LoginPage();
-          },
-        ),
+        home: DetailPage(),
+        // home: StreamBuilder(
+        //       stream: FirebaseAuth.instance.authStateChanges(),
+        //       builder:(index,snapshot){
+        //         if(snapshot.hasData){
+        //           return HomePage();
+        //         }
+        //         return LoginPage();
+        //   },
+        // ),
       ),
     );
   }
