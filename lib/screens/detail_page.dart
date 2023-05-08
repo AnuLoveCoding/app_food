@@ -73,7 +73,31 @@ class DetailPage extends StatelessWidget {
                     ),
                     SizedBox(height: 15.0,),
                     Text("Descriptio",style: TextStyle(fontSize: 25.0,color: Colors.white),),
-                    Text('User will get details of restaurants like name, location and reviews. Users can select the food from the menu list, can add to favourites and can get processed further. User can view the history of their orders and the current orders status. User have online payment options.',style: TextStyle(color: Colors.white,),),
+                    Text('User will get details of restaurants like name, location and reviews. Users can select the food from the menu list, can add to favourites and can get processed further. User can view the history of their orders and the current orders status. User have online payment options.',style: TextStyle(color: Colors.white,fontSize: 16.0),),
+                    SizedBox(height: 10.0,),
+                    Container(
+                      height: 55.0,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)
+                            ),
+                            primary: Colors.purple
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.shop,color: Colors.white,),
+                            Text(
+                              "Add To Cart",
+                              style: TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 ),
               )
