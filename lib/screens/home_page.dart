@@ -1,4 +1,7 @@
+import 'package:app_food/model/categories_model.dart';
+import 'package:app_food/provider/my_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -15,7 +18,7 @@ class _HomePageState extends State<HomePage> {
           height: 80.0,
           width: 80.0,
           decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage(image),fit: BoxFit.cover),
+              image: DecorationImage(image: NetworkImage(image),fit: BoxFit.cover),
               color: Colors.grey,
               borderRadius: BorderRadius.circular(10.0)
           ),
@@ -25,6 +28,7 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+  List<CategoriesModel> burgerList =[];
   Widget bottomContainer({required String image, required int price, required String name}){
     return Container(
       height: 270.0,
@@ -66,8 +70,18 @@ class _HomePageState extends State<HomePage> {
       title: Text(name,style: TextStyle(fontSize: 20.0,color: Colors.white),),
     );
   }
+
+  Widget burger(){
+    return Row(
+      children: burgerList.map((e) => categoriesContainer(image: e.image, name: e.name),).toList(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    MyProvider provider = Provider.of<MyProvider>(context);
+    provider.getCategories();
+    burgerList = provider.throwList;
     return Scaffold(
       drawer: Drawer(
         child: Container(
@@ -139,11 +153,12 @@ class _HomePageState extends State<HomePage> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                categoriesContainer(image: '../images/pizza01.jpg', name: 'All'),
-                categoriesContainer(image: '../images/pizza02.jpg', name: 'Burger'),
-                categoriesContainer(image: '../images/pizza03.jpg', name: 'Recipe'),
-                categoriesContainer(image: '../images/pizza04.jpg', name: 'Pizza'),
-                categoriesContainer(image: '../images/Coco.jpg', name: 'Drink'),
+                burger(),
+                // categoriesContainer(image: '../images/pizza01.jpg', name: 'All'),
+                // categoriesContainer(image: '../images/pizza02.jpg', name: 'Burger'),
+                // categoriesContainer(image: '../images/pizza03.jpg', name: 'Recipe'),
+                // categoriesContainer(image: '../images/pizza04.jpg', name: 'Pizza'),
+                // categoriesContainer(image: '../images/Coco.jpg', name: 'Drink'),
               ],
             ),
           ),

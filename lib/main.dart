@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:app_food/provider/my_provider.dart';
 import 'package:app_food/screens/home_page.dart';
 import 'package:app_food/screens/login_page.dart';
 import 'package:app_food/screens/sign_up01.dart';
@@ -5,6 +8,7 @@ import 'package:app_food/screens/welcome_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,34 +22,37 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Food App',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xff2b2b2b),
-        appBarTheme: AppBarTheme(
-          color: Color(0xff2b2b2b),
-        )
-        // This is the theme of your application.
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        // primarySwatch: Colors.blue,
-      ),
-      home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context,snapshot){
-              if(snapshot.hasData){
-                return HomePage();
-              }
-              else{
-                LoginPage();
-              }
-        },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)  => MyProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Food App',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Color(0xff2b2b2b),
+          appBarTheme: AppBarTheme(
+            color: Color(0xff2b2b2b),
+          )
+          // This is the theme of your application.
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          // primarySwatch: Colors.blue,
+        ),
+        home: StreamBuilder(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder:(index,snapshot){
+                if(snapshot.hasData){
+                  return HomePage();
+                }
+                return LoginPage();
+          },
+        ),
       ),
     );
   }
