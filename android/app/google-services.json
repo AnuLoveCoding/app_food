@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "514037055154",
+    "project_id": "tasteeapp-cbcfb",
+    "storage_bucket": "tasteeapp-cbcfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514037055154:android:5939d69ac54966022653ab",
+        "android_client_info": {
+          "package_name": "com.example.app_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514037055154-hn021u6esgbha927anhqi14ao359kbpo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTjrV7b0FoionPf21JdZkhxn4lwsqrWHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514037055154-hn021u6esgbha927anhqi14ao359kbpo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
