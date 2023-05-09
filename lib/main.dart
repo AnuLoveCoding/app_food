@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:app_food/provider/my_provider.dart';
+import 'package:app_food/screens/cart_page.dart';
 import 'package:app_food/screens/detail_page.dart';
 import 'package:app_food/screens/home_page.dart';
 import 'package:app_food/screens/login_page.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           // primarySwatch: Colors.blue,
         ),
-        home: DetailPage(),
+        home: CartPage(),
         // home: StreamBuilder(
         //       stream: FirebaseAuth.instance.authStateChanges(),
         //       builder:(index,snapshot){
