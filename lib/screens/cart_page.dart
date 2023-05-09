@@ -39,21 +39,44 @@ class _CartPageState extends State<CartPage> {
           Row(
             children: [
                 Container(
-                  width: 200.0,
-                  height: 200.0,
+                  width: 170.0,
+                  height: 10.0,
                   child: CircleAvatar(
                     backgroundImage: AssetImage('../images/piazza01.jpg'),
                   ),
                 ),
+              SizedBox(width: 20.0,),
               Expanded(
-                child: Container(
-                  color: Colors.red,
-                  height: 200.0,
-                  child: Column(
-                    children: [
-                        Text('Burger',style: TextStyle(color: Colors.white,fontSize: 40.0,fontWeight: FontWeight.bold),)
-                    ],
-                  ),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Container(
+                      height: 200.0,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Burger',style: TextStyle(color: Colors.white,fontSize: 40.0,fontWeight: FontWeight.bold),),
+                          Text('burger bhout acha hai',style: TextStyle(color: Colors.white,fontSize: 10.0),),
+                          Text('\$\$70',style: TextStyle(color: Colors.white,fontSize: 20.0,fontWeight: FontWeight.bold),),
+                          Row(
+                            children: [
+                              IconButton(onPressed: (){
+
+                               }, icon: Icon(Icons.remove,color: Colors.white,size: 50.0,),),
+                              SizedBox(width: 10.0,),
+                              Text('1',style: TextStyle(color: Colors.white,fontSize: 20.0,fontWeight: FontWeight.bold),),
+                              SizedBox(width: 10.0,),
+                              IconButton(onPressed: (){
+
+                               }, icon: Icon(Icons.add,color: Colors.white,size: 50.0,),),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.close,color: Colors.white,size: 10.0,))
+                  ],
                 ),
               ),
             ],
